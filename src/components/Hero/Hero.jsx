@@ -1,81 +1,54 @@
-import { eb, mvd} from "../../assets/partners/index";
+import { bgVideo } from "../../assets/videos"
+import { getstarted, buydunes, Subtract, refund} from "../../assets/icons/index"
+import { useEffect } from "react"
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import {    chaingpt, mexc, gains, chappyz, seedify, gateio} from '../../assets/partners/index'
 export default function Hero() {
+    useEffect(()=>{
+        AOS.init({duration:1000})
+    },[])
     return(
         <>
-        <div className="relative" id="home">
-    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40">
-        <div className="blur-[106px] h-56 bg-gradient-to-br from-[#4895ef] to-blue-300 "></div>
-        <div className="blur-[106px] h-32 bg-gradient-to-r from-blue-400 to-blue-300"></div>
-    </div>
-    <div className="max-w-5xl mx-auto px-6 md:px-12 xl:px-6">
-        <div className="relative pt-36 mx-auto">
-            <div className="lg:w-full text-center mx-auto">
-                <h1 className="flex flex-col text-gray-900 font-bold text-5xl md:text-6xl xl:text-7xl">Sheker <span className="text-[#4895ef]">Emes</span></h1>
-                <p className="mt-8 text-gray-700">Есірткіге табынуға емес, оны қаштыртуға ұмтыл!</p>
-                <div className="mt-16 flex flex-row justify-center gap-y-4 gap-x-6">
-                    <a
-                      href="#"
-                      className="relative flex h-11 w-[150px] items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-[#4895ef] before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
-                    >
-                      <span className="relative font-semibold text-white">Начать</span>
-                    </a>
-                    <a
-                      href="#"
-                      className="relative flex h-11 w-[250px] items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-primary/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 :before:border-gray-700"
-                    >
-                      <span
-                        className="relative text-base font-semibold text-primary "
-                        >Узнать больше</span>
-                    </a>
-                </div>
-                <div className="hidden py-4 mt-16 border-y border-gray-100 sm:flex justify-around">
-                    <div className="text-center">
-                        <h6 className="text-lg font-semibold text-gray-700 ml-8">516</h6>
-                        <p className="mt-2 text-gray-500">Незаконное культивирование растений, содержащих наркотические вещества <br></br>(2023-2024)</p>
-                    </div>
-                    <div className="text-center">
-                        <h6 className="text-lg font-semibold text-gray-700 ml-4">3271</h6>
-                        <p className="mt-2 text-gray-500">Незаконное изготовление, хранение, сбыт наркотических веществ <br></br>(2023-2024)</p>
-                    </div>
-                    <div className="text-center">
-                        <h6 className="text-lg font-semibold text-gray-700">15</h6>
-                        <p className="mt-2 text-gray-500">Организация притонов для потребления наркотических веществ <br></br>(2023-2024)</p>
-                    </div>
+            <div className="w-full h-screen bg-black">
+                <div className="overlay"></div>
+                <video src={bgVideo} autoPlay muted loop/>
+                <div className="content w-full mx-auto flex flex-col text-white gap-16">
+                        <div className="myFontScienceReg w-[490px] h-8 text-center mx-auto mt-20" data-aos="fade-up" data-aos-once="true">
+                            <h3>Platform forged from Sands of ancient desert to provide incubation to Innovations on Runes protocol</h3>
+                        </div>
+                        <div className="myFontScienceMed text-6xl w-[674px] text-center mx-auto" data-aos="fade-up" data-aos-once="true">
+                           <h1>Join the most  <span className="text-[#81D100]">innovative   </span> launchpad of 2024</h1> 
+                        </div>
+                        <div className="text-center mx-auto flex flex-row justify-center items-center w-[490px] gap-10 mt-36" data-aos="fade-up" data-aos-once="true">
+                            <img src={getstarted} alt="getStartedButton" className='cursor-pointer hover:opacity-80 hover:contrast-125 ease-in-out'/>
+                            <img src={buydunes} alt="buyDunesButton"className='cursor-pointer hover:opacity-80 ease-in-out' />
+                        </div>
+                        <div className="flex flex-row mx-auto w-full mt-4" data-aos="fade-up" data-aos-once="true">
+                            <div className="w-[1280px] border-white gap-4 border-opacity-25 h-40 border-t-[0.6px] border-b-[0.6px] flex flex-col px-12">
+                                <div className="flex flex-row gap-3 items-center">
+                                    <p className="myFontMonoReg opacity-70 mt-4 uppercase">Trusted by </p>
+                                    <img src={Subtract} alt="downEl" className="w-[15px] h-[10px] mt-4"/>
+                                </div>
+                                <div className="flex flex-row justify-between">
+                                    <div className="flex flex-row justify-around w-full h-[51px] ">
+                                        <img src={chaingpt}  alt="chaingpt"/>
+                                        <img src={mexc}  alt="mexc"/>
+                                        <img src={gains}  alt="gains"/>
+                                        <img src={chappyz}  alt="chappyz" className="opacity-80"/>
+                                        <img src={seedify}  alt="seedify" className="opacity-70"/>
+                                        <img src={gateio}  alt="gateio" className="opacity-50"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                    <div className="w-60 flex justify-center h-[160px] items-center border-white border-opacity-25 border-l-[0.6px] border-b-[0.6px] border-t-[0.6px]">
+                                        <img src={refund} alt="refundIcon"/>
+                                    </div>
+                            </div>
+                        </div>
                 </div>
             </div>
-            <div className="mt-12 flex flex-col justify-around">
-                <h2 className="mb-6 text-3xl text-center font-medium text-gray-800">Наши партнеры</h2>
-                {/* <div className="flex flex-row justify-around">
-                    <div className="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src={mvd} className="h-20 w-auto mx-auto" loading="lazy" alt="mvd logo" width="" height="" />
-                    </div>
-                    <div className="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src={eb} className="h-20 w-auto mx-auto" loading="lazy" alt="Esirtkisiz Bolashaq" width="" height="" />
-                    </div>
-                </div> */}
-                <div className="flex flex-row justify-between">
-                    <a href="#" class="flex flex-col w-[480px] h-48 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Министерство внутренних дел Казахстана</h5>
-                            <p class="mb-3 font-normal text-gray-700">Исполнительный орган, осуществляющий руководство системой органов внутренних дел РК в области гражданской обороны.</p>
-                        </div>
-                        <img class="rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg w-36 h-36" src={mvd} alt="" />
-                    </a>
-                    <a href="#" class="flex flex-col w-[480px] h-48 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
-                        <img class="w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg w-36 h-36" src={eb} alt="" />
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">КФ «Будущее без наркотиков»</h5>
-                            <p class="mb-3 font-normal text-gray-700">Борется с наркоманией через профилактику, социальную адаптацию и поддержку законодательных инициатив для обеспечения здорового общества.</p>
-                        </div>
-                    </a>
-                </div>
-
-                
-
-            </div>
-        </div>
-    </div>
-</div>
         </>
     )
 }
