@@ -1,7 +1,23 @@
 import { } from '../../assets/partners/index'
 import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import AuthContext from '../../context/AutoContext'
 export default function Authorization() {
 
+
+
+	const {loginUser} = useContext(AuthContext)
+	const handleSubmit = e => {
+	  e.preventDefault()
+	  const email = e.target.email.value
+	  const password = e.target.password.value
+  
+	  email.length > 0 && loginUser(email, password)
+  
+	  console.log(email)
+	  console.log(password)
+	 
+	}
     return(
         <>
             <section className="bg-gray-50 font-lato">
@@ -18,6 +34,7 @@ export default function Authorization() {
 							</div>
 							<form
 								className="space-y-4 md:space-y-6"
+								onSubmit={handleSubmit}
 							>
 								<div>
 									<label htmlFor="email" className="block mb-2 text-sm font-medium text-[#444444] text-[18px] font-lato">

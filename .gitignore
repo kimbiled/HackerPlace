@@ -14,10 +14,6 @@ dist/
 .env.test.local
 .env.production.local
 
-# Tailwind CSS
-tailwind.config.js
-postcss.config.js
-
 # Django
 *.pyc
 __pycache__/
