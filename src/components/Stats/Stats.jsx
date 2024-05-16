@@ -1,4 +1,4 @@
-import { cat, circleCat, idos, tone, www, telegram, twitter, lemon, circleGem, gem, circleLemon, discord} from "../../assets/icons/index"
+import { } from "../../assets/icons/index"
 import { useEffect } from "react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'

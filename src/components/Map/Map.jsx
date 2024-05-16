@@ -1,5 +1,5 @@
-import { featured, evermoon, twitter, telegram, discord,www , participate, warning} from "../../assets/icons/index"
-import { launch } from "../../assets/videos/index"
+import { } from "../../assets/icons/index"
+import {  } from "../../assets/videos/index"
 import { useEffect } from "react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
