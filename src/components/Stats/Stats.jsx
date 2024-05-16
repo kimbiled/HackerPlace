@@ -8,149 +8,63 @@ export default function Stats() {
     }, [])
     return(
         <>
-          <div className="w-full h-[860px] bg-black mt-28 px-12 flex flex-col">
-            <div className="flex flex-row justify-between">
-                <div className="w-[420px] h-[290px] border-white border-opacity-25 border-r-[0.6px] border-l-[0.6px] flex flex-wrap" data-aos="fade-up" data-aos-once="true">
-                    <div className="w-[210px] h-[156px] border-white border-opacity-25 border-r-[0.6px] border-b-[0.6px] flex flex-col items-end justify-end">
-                        <img src={idos} alt="IDOs" width={210}/>
-                    </div>
-                    <div className="w-[208px] h-[156px] border-white border-opacity-25 border-b-[0.6px]"></div>
-                    <div className="w-[210px] h-[134px] border-white border-opacity-25 border-r-[0.6px] border-b-[0.6px]">
-                        <div className="h-[60px] flex flex-col justify-center items-center border-white border-opacity-25 border-b-[0.6px]">
-                            <p className="myFontMonoReg text-white text-sm uppercase text-center opacity-60"> Live & UPCOMING</p>
-                        </div>
-                    </div>
-                    <div className="w-[208px] h-[134px] border-white border-opacity-25 border-b-[0.6px]">
-                        <div className="h-[60px] flex flex-col justify-center items-center border-white border-opacity-25 border-b-[0.6px]">
-                            <p className="myFontMonoReg text-white text-sm uppercase text-center">FINISHED</p>
-                        </div>
-                    </div>
+          <div className="bg-white py-24 sm:py-32 font-['Montserrat']">
+            <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl ">
+                <div className="mx-auto max-w-screen-lg lg:text-center">
+                    <h2 className="text-base font-semibold leading-7 text-violet-600">Our features</h2>
+                    <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Embark on your cybersecurity journey right now. Immerse yourself in the exhilarating world of HackerPlace and prove your skills!</p>
+                    <p className="mt-6 text-lg leading-8 text-gray-600">We provide for our users</p>
                 </div>
-                <div className="w-48 border-white border-opacity-25 border-l-[0.6px]"></div>
-            </div>
-            <div className="flex flex-row justify-between" data-aos="fade-up" data-aos-once="true">
-                <div className="w-[420px] h-[465px] border-[#EAE9E6] border-[0.83px] relative flex flex-col">
-                    <div>
-                        <img src={cat} alt="cat" className=" w-[420px] border-white border-b-[0.6px] border-opacity-25"/>
-                        <img src={circleCat} alt="circleCat" className="centreIcons"/>
+                <div className="mx-auto mt-16 max-w-screen-xl sm:mt-20 lg:mt-24 lg:max-w-screen-xl">
+                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                    <div className="relative pl-16">
+                    <dt className="text-base font-semibold leading-7 text-gray-900">
+                        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-violet-600">
+                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                        </svg>
+                        </div>
+                        24/7 Access
+                    </dt>
+                    <dd className="mt-2 text-base leading-7 text-gray-600">Enjoy unrestricted access to our platform anytime, anywhere. Whether it's day or night, you can delve into cybersecurity training and challenges at your convenience.</dd>
                     </div>
-                    <div className="flex flex-col">
-                        <div className="text-white uppercase myFontScienceReg text-[32px] h-[70px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                            <p>Catamoto  CATA</p>
+                    <div className="relative pl-16">
+                    <dt className="text-base font-semibold leading-7 text-gray-900">
+                        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-violet-600">
+                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
                         </div>
-                        <div className="flex flex-row text-white myFontScienceSemi text-xs opacity-70">
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <p>TOTAL RAISED</p>
-                            </div>
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>ATH ROI</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row text-white myFontScienceReg text-xl">
-                            <div className="w-[210px] h-[84px] flex flex-row gap-2 items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <div className="mt-[-5px]">
-                                    <img src={tone} alt="toneCoin"/>
-                                </div>
-                                <div>
-                                    <p>225,000</p>
-                                </div>
-                            </div>
-                            <div className="w-[210px] h-[84px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>25x</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row justify-center items-center gap-8 h-[73px] border-white border-b-[0.6px] border-opacity-25">
-                            <img src={twitter} width={27} height={27} alt="X social" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={www} width={27} height={27} alt="World wide" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={telegram} width={27} height={27} alt="telegram" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                        </div>
-                        <div className="text-white uppercase myFontMonoLight text-[15px] h-[65px] flex items-center justify-center">
-                            <p className="cursor-pointer hover:opacity-80 hover:contrast-125 ease-in-out">MORE DETAILS</p>
-                        </div>
+                        Privacy Protection
+                    </dt>
+                    <dd className="mt-2 text-base leading-7 text-gray-600"> We adhere to strict confidentiality standards, ensuring that any information provided during registration remains secure and confidential.</dd>
                     </div>
-                </div>
-                <div className="w-[420px] h-[465px] border-[#EAE9E6] border-[0.83px] relative flex flex-col">
-                    <div>
-                        <img src={lemon} alt="cat" className=" w-[420px] border-white border-b-[0.6px] border-opacity-25"/>
-                        <img src={circleLemon} alt="circleCat" className="centreIcons2"/>
+                    <div className="relative pl-16">
+                    <dt className="text-base font-semibold leading-7 text-gray-900">
+                        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-violet-600">
+                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                        </div>
+                        Interactive Learning
+                    </dt>
+                    <dd className="mt-2 text-base leading-7 text-gray-600">Engage in hands-on activities and real-world simulations to master cybersecurity concepts in a dynamic learning environment.</dd>
                     </div>
-                    <div className="flex flex-col">
-                        <div className="text-white  myFontScienceReg text-[32px] h-[70px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                            <p>Eesee ESE</p>
+                    <div className="relative pl-16">
+                    <dt className="text-base font-semibold leading-7 text-gray-900">
+                        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-violet-600">
+                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                        </svg>
                         </div>
-                        <div className="flex flex-row text-white myFontScienceSemi text-xs opacity-70">
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <p>TOTAL RAISED</p>
-                            </div>
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>ATH ROI</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row text-white myFontScienceReg text-xl">
-                            <div className="w-[210px] h-[84px] flex flex-row gap-2 items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <div className="mt-[-5px]">
-                                    <img src={tone} alt="toneCoin"/>
-                                </div>
-                                <div>
-                                    <p>500,000</p>
-                                </div>
-                            </div>
-                            <div className="w-[210px] h-[84px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>8x</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row justify-center items-center gap-8 h-[73px] border-white border-b-[0.6px] border-opacity-25">
-                            <img src={twitter} width={27} height={27} alt="X social"  className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={telegram} width={27} height={27} alt="telegram"  className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                        </div>
-                        <div className="text-white uppercase myFontMonoLight text-[15px] h-[65px] flex items-center justify-center">
-                            <p className=" cursor-pointer hover:opacity-80 ease-in-out">MORE DETAILS</p>
-                        </div>
+                        Expert Guidance
+                    </dt>
+                    <dd className="mt-2 text-base leading-7 text-gray-600">Benefit from expertly crafted learning paths and resources curated by industry professionals to help you navigate the complexities of cybersecurity.</dd>
                     </div>
-                </div>
-                <div className="w-[420px] h-[465px] border-[#EAE9E6] border-[0.83px] relative flex flex-col">
-                    <div>
-                        <img src={gem} alt="cat" className=" w-[420px] border-white border-b-[0.6px] border-opacity-25"/>
-                        <img src={circleGem} alt="circleCat" className="centreIcons"/>
-                    </div>
-                    <div className="flex flex-col">
-                        <div className="text-white uppercase myFontScienceReg text-[32px] h-[70px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                            <p>Next Gem AI</p>
-                        </div>
-                        <div className="flex flex-row text-white myFontScienceSemi text-xs opacity-70">
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <p>TOTAL RAISED</p>
-                            </div>
-                            <div className="w-[210px] h-[49px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>ATH ROI</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row text-white myFontScienceReg text-xl">
-                            <div className="w-[210px] h-[84px] flex flex-row gap-2 items-center justify-center border-white border-b-[0.6px] border-r-[0.6px] border-opacity-25">
-                                <div className="mt-[-5px]">
-                                    <img src={tone} alt="toneCoin"/>
-                                </div>
-                                <div>
-                                    <p>90,000</p>
-                                </div>
-                            </div>
-                            <div className="w-[210px] h-[84px] flex items-center justify-center border-white border-b-[0.6px] border-opacity-25">
-                                <p>2x</p>
-                            </div>
-                        </div>
-                        <div className="flex flex-row justify-center items-center gap-8 h-[73px] border-white border-b-[0.6px] border-opacity-25">
-                            <img src={twitter} width={27} height={27} alt="X social" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={www} width={27} height={27} alt="World wide" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={discord} width={27} height={27} alt="discord" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                            <img src={telegram} width={27} height={27} alt="telegram" className="opacity-70 cursor-pointer hover:opacity-100 hover:contrast-125 ease-in-out"/>
-                        </div>
-                        <div className="text-white uppercase myFontMonoLight text-[15px] h-[65px] flex items-center justify-center">
-                            <p className=" cursor-pointer hover:opacity-80 ease-in-out">MORE DETAILS</p>
-                        </div>
-                    </div>
+                </dl>
                 </div>
             </div>
-          </div>
-        </>
+            </div>
+       </>
     )
 }

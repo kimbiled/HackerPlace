@@ -1,13 +1,16 @@
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import Stats from "./components/Stats/Stats"
-import Map from "./components/Map/Map";
-import Footer from "./components/Footer/Footer";
+import Home from "./Home"
+import Authorization from "./components/Auth/Authorization";
+import Registration from "./components/Registration/Registration";
+
+import {Routes, Route, Link, Router} from 'react-router-dom'
 export default function App() {
   return (
      <>
-        <Navbar />
-        <Hero />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/auth" element={<Authorization />}/>
+          <Route path="/registration" element={<Registration />}/>
+        </Routes>
      </>
   )
 }
