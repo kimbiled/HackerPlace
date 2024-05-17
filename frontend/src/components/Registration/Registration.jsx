@@ -18,33 +18,11 @@ export default function Registration() {
 	console.log(password);
 
 	const submit = async (e) =>{
+		console.log("rabotaet registration")
 		e.preventDefault()
-		registerUser(email, username, password)
-		// e.preventDefault();
-		
-		// const response = await fetch('http://127.0.0.1:8000/api/users/register/', {
-		// 	method: 'POST',
-		// 	headers:{
-		// 		'Content-Type':'application/json'},
-		// 	body: JSON.stringify({
-		// 		username:'username',
-		// 		email:'email',
-		// 		password:'password'
-		// 	})
-		// }).then(response => {
-		// 	console.log(response)
-		//   })
-		//   .catch(error => {
-		// 	console.log(error)
-		//   })
-		// setRedirected(true)
-
-		
+		registerUser(email, username, password)		
 	}
 
-	// if(redirected) {
-	// 	return redirect('/auth')
-	//   }
 
 
     return(

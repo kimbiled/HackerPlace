@@ -1,23 +1,22 @@
 import { } from '../../assets/partners/index'
 import { Link } from 'react-router-dom'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import AuthContext from '../../context/AutoContext'
 export default function Authorization() {
 
-
-
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 	const {loginUser} = useContext(AuthContext)
-	const handleSubmit = e => {
-	  e.preventDefault()
-	  const email = e.target.email.value
-	  const password = e.target.password.value
-  
-	  email.length > 0 && loginUser(email, password)
-  
-	  console.log(email)
-	  console.log(password)
-	 
+
+	const submit = async (e) =>{
+		console.log("rabotaet login")
+		e.preventDefault()
+		loginUser(email, password)		
 	}
+
+
+
+	
     return(
         <>
             <section className="bg-gray-50 font-lato">
@@ -34,7 +33,7 @@ export default function Authorization() {
 							</div>
 							<form
 								className="space-y-4 md:space-y-6"
-								onSubmit={handleSubmit}
+								onSubmit={submit}
 							>
 								<div>
 									<label htmlFor="email" className="block mb-2 text-sm font-medium text-[#444444] text-[18px] font-lato">
@@ -47,6 +46,7 @@ export default function Authorization() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-5 h-12"
 										placeholder="Email"
 										required
+										onChange={e => setEmail(e.target.value)}
 									/>
 								</div>
 								<div>
@@ -60,6 +60,7 @@ export default function Authorization() {
 										placeholder="••••••••"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-5 h-12"
 										required
+										onChange={e => setPassword(e.target.value)}
 									/>
 								</div>
 								<div className="flex items-center justify-between">

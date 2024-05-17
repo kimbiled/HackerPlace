@@ -5,7 +5,7 @@ import AuthContext from "./AutoContext"
 
 const PrivateRoute = ({children, ...rest}) => {
     let {user} = useContext(AuthContext)
-    return <Route {...rest}>{!user ? redirect("/auth") : children}</Route>
+    return (<Route {...rest}>{!user ? redirect("/auth") : children}</Route>)
 }
 
 export default PrivateRoute;

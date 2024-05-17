@@ -1,6 +1,6 @@
 import {createContext, useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-
+import {jwtDecode} from "jwt-decode";
 const AuthContext = createContext();
 
 export default AuthContext
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(() => 
         localStorage.getItem("authTokens")
-            ? jwt_decode(localStorage.getItem("authTokens"))
+            ? jwtDecode(localStorage.getItem("authTokens"))
             : null
     );
 
@@ -25,35 +25,28 @@ export const AuthProvider = ({ children }) => {
     let navigate = useNavigate();
 
     const loginUser = async (email, password) => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/token/', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: email, 
-                    password: password
-                })
-            });
-    
-            const data = await response.json();
-            console.log(data);
-    
-            if (response.status === 200) {
-                console.log("Logged In");
-                setAuthTokens(data);
-                setUser(jwt_decode(data.access));
-                localStorage.setItem("authTokens", JSON.stringify(data));
-                navigate("/");
-            } else {
-                console.log(response.status);
-                console.log("There was a server issue");
-            }
-        } catch (error) {
-            console.error("An error occurred:", error);
+        let url = "http://127.0.0.1:8000/api/token/"
+        const response = await fetch(url,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({email, password})
+        })
+        const data = await response.json()
+        console.log(data)
+
+        if (response.status === 200){
+            setAuthTokens(data)
+            setUser(jwtDecode(data.access))
+            localStorage.setItem("authTokens", JSON.stringify(data));
+            navigate("/")
+        } else {
+            window.event.preventDefault()
+            console.log(response.status)
+            console.log("An Error Occured")
         }
-    };
+    }
 
     const registerUser = async (email, username, password) => {
         const response = await fetch("http://127.0.0.1:8000/api/users/register/", {
@@ -95,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (authTokens) {
-            setUser(jwt_decode(authTokens.access))
+            setUser(jwtDecode(authTokens.access))
         }
         setLoading(false)
     }, [authTokens, loading])
@@ -105,5 +98,4 @@ export const AuthProvider = ({ children }) => {
             {loading ? null : children}
         </AuthContext.Provider>
     )
-
-}
+};
