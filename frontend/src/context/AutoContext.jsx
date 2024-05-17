@@ -25,32 +25,35 @@ export const AuthProvider = ({ children }) => {
     let navigate = useNavigate();
 
     const loginUser = async (email, password) => {
-        const response = await fetch("http://127.0.0.1:8000/api/token/", {
-            method: "POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                email, password
-            })
-        })
-        const data = await response.json()
-        console.log(data);
-
-        if(response.status === 200){
-            console.log("Logged In");
-            setAuthTokens(data)
-            setUser(jwt_decode(data.access))
-            localStorage.setItem("authTokens", JSON.stringify(data))
-            navigate("/")
-        
-
-        } else {    
-            console.log(response.status);
-            console.log("there was a server issue");
-           
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/token/', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email, 
+                    password: password
+                })
+            });
+    
+            const data = await response.json();
+            console.log(data);
+    
+            if (response.status === 200) {
+                console.log("Logged In");
+                setAuthTokens(data);
+                setUser(jwt_decode(data.access));
+                localStorage.setItem("authTokens", JSON.stringify(data));
+                navigate("/");
+            } else {
+                console.log(response.status);
+                console.log("There was a server issue");
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
         }
-    }
+    };
 
     const registerUser = async (email, username, password) => {
         const response = await fetch("http://127.0.0.1:8000/api/users/register/", {
