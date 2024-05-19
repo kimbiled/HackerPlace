@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.utils import timezone
 
 class Module(models.Model):
     title = models.CharField(max_length=200)
@@ -12,7 +14,8 @@ class Assignment(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='assignments/', blank=True, null=True)
-    video = models.FileField(upload_to='assignments/', blank=True, null=True)
+    file = models.FileField(upload_to='assignments/files/', blank=True, null=True)
+    video = models.FileField(upload_to='assignments/videos/', blank=True, null=True)
     answer = models.CharField(max_length=200)
 
     def __str__(self):
@@ -25,3 +28,17 @@ class Hint(models.Model):
 
     def __str__(self):
         return f"Hint for {self.assignment.title}"
+
+class UserAssignment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_assignments', on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, related_name='user_assignments', on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    completed_at = models.DateTimeField(blank=True, null=True)
+
+    def complete(self):
+        self.completed = True
+        self.completed_at = timezone.now()
+        self.save()
+
+    class Meta:
+        unique_together = ('user', 'assignment')

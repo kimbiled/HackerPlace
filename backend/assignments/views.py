@@ -1,6 +1,6 @@
-from rest_framework import generics
-from .models import Module, Assignment, Hint
-from .serializers import ModuleSerializer, AssignmentSerializer, HintSerializer
+from rest_framework import generics, permissions
+from .models import Module, Assignment, Hint, UserAssignment
+from .serializers import ModuleSerializer, AssignmentSerializer, HintSerializer, UserAssignmentSerializer
 
 class ModuleList(generics.ListCreateAPIView):
     queryset = Module.objects.all()
@@ -31,3 +31,21 @@ class HintList(generics.ListCreateAPIView):
 class HintDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hint.objects.all()
     serializer_class = HintSerializer
+
+class UserAssignmentList(generics.ListCreateAPIView):
+    serializer_class = UserAssignmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserAssignment.objects.filter(user=self.request.user)
+
+class UserAssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserAssignment.objects.all()
+    serializer_class = UserAssignmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied()
+        return obj
