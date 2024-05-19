@@ -1,58 +1,35 @@
 export default function Footer() {
     return(
         <>
-        <footer className="bg-white">
-            <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div className="md:flex md:justify-between">
-                  <div className="mb-6 md:mb-0">
-                      <a href="https://flowbite.com/" className="flex items-center">
-                          <span className="self-center text-2xl font-semibold whitespace-nowrap">ShekerEmes</span>
-                      </a>
-                  </div>
-                  <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                      <div>
-                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Ресурсы</h2>
-                          <ul className="text-gray-500  font-medium">
-                              <li className="mb-4">
-                                  <a href="https://flowbite.com/" className="hover:underline">Новостные порталы</a>
-                              </li>
-                              <li>
-                                  <a href="https://tailwindcss.com/" className="hover:underline">Статьи</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div>
-                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Подписаться на нас</h2>
-                          <ul className="text-gray-500  font-medium">
-                              <li className="mb-4">
-                                  <a href="https://github.com/themesberg/flowbite" className="hover:underline ">Instagram</a>
-                              </li>
-                              <li>
-                                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">Telegram</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div>
-                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Права</h2>
-                          <ul className="text-gray-500 font-medium">
-                              <li className="mb-4">
-                                  <a href="#" className="hover:underline">Политика конфидециальности</a>
-                              </li>
-                              <li>
-                                  <a href="#" className="hover:underline">Правила &amp; Условия</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-              <div className="sm:flex sm:items-center sm:justify-between">
-                  <span className="text-sm text-gray-500 sm:text-center">© 2023 <a href="https://flowbite.com/" className="hover:underline">ShekerEmes</a>. Все права защищены.
-                  </span>
-                  
-              </div>
-            </div>
-        </footer>
+        
+
+<footer>
+    <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 mx-auto max-w-screen-xl" />
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl font-['Montserrat'] mx-auto p-4 md:py-8">   
+        <div class="sm:flex sm:items-center sm:justify-between w-[570px]">
+            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <span class="self-center text-xl font-medium whitespace-nowrap ">HackerPlace</span>
+            </a>
+            <ul class="flex flex-row justify-around w-96 items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline mr-4">Flowbite™</a> All Rights Reserved.</span>
+    </div>
+</footer>
+
+
         </>
     )
 }

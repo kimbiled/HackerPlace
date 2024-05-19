@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Card = () => {
   return (
     <>
@@ -9,23 +9,51 @@ const Card = () => {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <SingleCard
               image="https://i.ibb.co/r2zns1m/image-01.jpg"
-              CardTitle="50+ Best creative website themes & templates"
-              titleHref="/#"
-              btnHref="/#"
-              CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-              Button="View Details"
+              CardTitle="Advanced Web Exploitation"
+              titleHref="/webExp"
+              btnHref="/webExp"
+              CardDescription="This module covers advanced topics such as server-side request forgery, cross-site scripting, and exploiting web application logic flaws, equipping you with the skills needed to tackle complex web security challenges."
+              Button="Play game"
             />
             <SingleCard
               image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
-              CardTitle="Creative Card Component designs graphic elements"
-              CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-              Button="View Details"
+              CardTitle="Steganography Techniques"
+              titleHref="/steganography"
+              btnHref="/steganography"
+              CardDescription="This module delves into advanced steganographic methods, including image, audio, and video steganography, as well as techniques for detecting steganographic methods used by adversaries."
+              Button="Play game"
             />
             <SingleCard
               image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
-              CardTitle="The ultimate UX and UI guide to card design"
-              CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-              Button="View Details"
+              CardTitle="Expert Open-Source Intelligence (OSINT)"
+              titleHref="/osint"
+              btnHref="/osint"
+              CardDescription="This comprehensive module covers advanced OSINT techniques, including data mining, and the use of specialized tools and frameworks to uncover actionable intelligence."
+              Button="Play game"
+            />
+            <SingleCard
+              image="https://i.ibb.co/r2zns1m/image-01.jpg"
+              CardTitle="Intermediate Cryptography"
+              titleHref="/cryptography"
+              btnHref="/cryptography"
+              CardDescription="Build on your foundational knowledge of cryptography with a deeper understanding of cryptographic algorithms and protocols. This module includes topics such as public key cryptographic hash functions, and an introduction to cryptographic attacks."
+              Button="Play game"
+            />
+            <SingleCard
+              image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
+              CardTitle="Introductory Reverse Engineering"
+              titleHref="/reverseEng"
+              btnHref="/reverseEng"
+              CardDescription="This module introduces the basics of disassembling and analyzing software to understand its functionality, uncover vulnerabilities, and develop patches. Learn essential tools and techniques used in reverse engineering."
+              Button="Play game"
+            />
+            <SingleCard
+              image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
+              CardTitle="Binary Exploitation"
+              titleHref="/binaryExp"
+              btnHref="/binaryExp"
+              CardDescription="This module covers basic concepts such as buffer overflows, stack smashing, and simple return-oriented programming (ROP) techniques. Gain hands-on experience with exploiting binary vulnerabilities in a controlled environment."
+              Button="Play game"
             />
           </div>
         </div>
@@ -51,24 +79,24 @@ const SingleCard = ({
         <img src={image} alt="" className="w-full" />
         <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
           <h3>
-            <a
-              href={titleHref ? titleHref : "/#"}
+            <Link
+              to={titleHref ? titleHref : "/#"}
               className="mb-4 block text-xl font-semibold text-dark hover:text-primary  sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
             >
               {CardTitle}
-            </a>
+            </Link>
           </h3>
           <p className="mb-7 text-base leading-relaxed text-body-color ">
             {CardDescription}
           </p>
 
           {Button && (
-            <a
-              href={btnHref ? btnHref : "#"}
+            <Link
+              to={btnHref ? btnHref : "/"}
               className="inline-block rounded-full border border-gray-3 px-7 py-2 text-base font-medium text-body-color transition hover:border-primary hover:bg-primary hover:text-white dark:border-dark-3 dark:text-dark-6"
             >
               {Button}
-            </a>
+            </Link>
           )}
         </div>
       </div>
