@@ -6,6 +6,9 @@ from .views import (
     AssignmentDetail,
     HintList,
     HintDetail,
+    UserAssignmentList,
+    UserAssignmentDetail,
+    UserAssignmentSubmit,
 )
 
 urlpatterns = [
@@ -28,5 +31,18 @@ urlpatterns = [
         "assignments/<int:assignment_id>/hints/<int:pk>/",
         HintDetail.as_view(),
         name="hint_detail",
+    ),
+    path(
+        "user-assignments/", UserAssignmentList.as_view(), name="user_assignment_list"
+    ),
+    path(
+        "user-assignments/<int:pk>/",
+        UserAssignmentDetail.as_view(),
+        name="user_assignment_detail",
+    ),
+    path(
+        "user-assignments/<int:pk>/submit/",
+        UserAssignmentSubmit.as_view(),
+        name="user_assignment_submit",
     ),
 ]

@@ -22,7 +22,20 @@ class ModuleSerializer(serializers.ModelSerializer):
 
 class UserAssignmentSerializer(serializers.ModelSerializer):
     assignment = AssignmentSerializer(read_only=True)
-    
+    time_taken = serializers.DurationField(required=False)
+
     class Meta:
         model = UserAssignment
-        fields = ['id', 'assignment', 'completed', 'completed_at']
+        fields = ['id', 'assignment', 'completed', 'completed_at', 'time_taken']
+        read_only_fields = ['completed', 'completed_at']
+
+class UserAssignmentSubmitSerializer(serializers.ModelSerializer):
+    time_taken = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = UserAssignment
+        fields = ['time_taken']
+
+    def update(self, instance, validated_data):
+        instance.complete(time_taken=validated_data.get('time_taken'))
+        return instance
