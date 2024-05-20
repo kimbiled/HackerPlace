@@ -34,10 +34,13 @@ class UserAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, related_name='user_assignments', on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(blank=True, null=True)
+    time_taken = models.DurationField(blank=True, null=True)
 
-    def complete(self):
+    def complete(self, time_taken=None):
         self.completed = True
         self.completed_at = timezone.now()
+        if time_taken:
+            self.time_taken = time_taken
         self.save()
 
     class Meta:
