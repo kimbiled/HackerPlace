@@ -1,7 +1,7 @@
 
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
-
+import { Link } from "react-router-dom"
 export default function Play() {
     const exercises = [
         {
@@ -10,7 +10,7 @@ export default function Play() {
            date: "01",
            task: "Discover sophisticated methods to exploit and secure web applications effectively",
            category: "webExp",
-           exam: "IELTS"
+           url:'/webExp'
         },
         {
            id: 2,
@@ -18,7 +18,7 @@ export default function Play() {
            date: "02",
            task: "Learn advanced methods for hiding and detecting information in media",
            category: "steganography",
-           exam: "IELTS"
+           url:'/steganography'
         },
         {
            id: 3,
@@ -26,7 +26,7 @@ export default function Play() {
            date: "03",
            task: "Master advanced techniques for gathering and analyzing publicly available data",
            category: "osint",
-           exam: "IELTS"
+           url:'/osint'
         },
         {
            id: 4,
@@ -34,7 +34,7 @@ export default function Play() {
            date: "04",
            task: "Enhance your understanding of cryptographic algorithms and secure communication methods",
            category: "cryptography",
-           exam: "IELTS"
+           url:'/cryptography'
         },
         {
            id: 5,
@@ -42,7 +42,7 @@ export default function Play() {
            date: "05",
            task: "Introduction to software disassembly, analysis, and vulnerability detection techniques",
            category: "reverseEng",
-           exam: "IELTS"
+           url:'/reverseEng'
         },
         {
            id: 6,
@@ -50,7 +50,7 @@ export default function Play() {
            date: "06",
            task: "Basic concepts of binary exploitation, including buffer overflows and ROP",
            category: "binaryExp",
-           exam: "IELTS"
+           url:'/binaryExp'
         }
      ]
 
@@ -110,12 +110,15 @@ export default function Play() {
                         </p>
                      </div>
                   </div>
-                  <button
-                     className="hoverButton w-36 h-11 border-[1px] border-smrtBlue text-smrtBlue text-sm rounded-md"
-                     onClick={() => handleButtonClick(exercise)}
-                  >
-                     Start
-                  </button>
+
+                  <Link to={exercise.url}>
+                     <button
+                        className="hoverButton w-36 h-11 border-[1px] border-smrtBlue text-smrtBlue text-sm rounded-md"
+                        onClick={() => handleButtonClick(exercise)}
+                     >
+                        Start 
+                     </button>
+                  </Link>
                </div>
             ))}
                 </div>
