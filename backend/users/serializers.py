@@ -1,8 +1,10 @@
-from django.forms import ValidationError
 from rest_framework import serializers
-from .models import User
+from django.contrib.auth import get_user_model
+from assignments.serializers import AssignmentSerializer, UserAssignmentSerializer
+from assignments.models import UserAssignment
 from django.utils.translation import gettext_lazy as _
 
+User = get_user_model()
 
 class UserSignUpSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=255)
@@ -34,9 +36,8 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    email = serializers.CharField(required=True)
-    username = serializers.CharField(required=True)
+    user_assignments = UserAssignmentSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ["email", "username"]
+        fields = ["email", "username", "user_assignments"]

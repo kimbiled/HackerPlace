@@ -1,7 +1,10 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserSignUpSerializer
+from django.contrib.auth import get_user_model
+from .serializers import UserSerializer, UserSignUpSerializer
+
+User = get_user_model()
 
 
 class UserCreate(generics.CreateAPIView):
@@ -15,3 +18,10 @@ class UserCreate(generics.CreateAPIView):
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+    
+class UserProfile(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
