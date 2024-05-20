@@ -11,7 +11,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Assignment
-        fields = ['id', 'title', 'description', 'image', 'video', 'answer', 'hints']
+        fields = ['id', 'title', 'description', 'image', 'video', 'file', 'answer', 'hints']
 
 class ModuleSerializer(serializers.ModelSerializer):
     assignments = AssignmentSerializer(many=True, read_only=True)
