@@ -1,7 +1,8 @@
-from rest_framework import generics, permissions, status
-from rest_framework.response import Response
+from rest_framework import generics, permissions
+from rest_framework.exceptions import PermissionDenied, NotFound
 from .models import Module, Assignment, Hint, UserAssignment
 from .serializers import ModuleSerializer, AssignmentSerializer, HintSerializer, UserAssignmentSerializer, UserAssignmentSubmitSerializer
+from datetime import timedelta
 
 class ModuleList(generics.ListCreateAPIView):
     queryset = Module.objects.all()
@@ -57,7 +58,11 @@ class UserAssignmentSubmit(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
-        obj = super().get_object()
-        if obj.user != self.request.user:
-            raise PermissionDenied()
+        assignment_id = self.kwargs['pk']
+        user = self.request.user
+        try:
+            obj = UserAssignment.objects.get(user=user, assignment_id=assignment_id)
+        except UserAssignment.DoesNotExist:
+            assignment = Assignment.objects.get(id=assignment_id)
+            obj = UserAssignment.objects.create(user=user, assignment=assignment)
         return obj
