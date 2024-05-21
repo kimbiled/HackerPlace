@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {crypto, binexp, osint, reverseEng, steganography} from '../../assets/icons/index'
 const Card = () => {
   return (
     <>
@@ -16,7 +17,7 @@ const Card = () => {
               Button="Play game"
             />
             <SingleCard
-              image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
+              image={steganography}
               CardTitle="Steganography Techniques"
               titleHref="/steganography"
               btnHref="/steganography"
@@ -24,7 +25,7 @@ const Card = () => {
               Button="Play game"
             />
             <SingleCard
-              image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
+              image={osint}
               CardTitle="Expert Open-Source Intelligence (OSINT)"
               titleHref="/osint"
               btnHref="/osint"
@@ -32,7 +33,7 @@ const Card = () => {
               Button="Play game"
             />
             <SingleCard
-              image="https://i.ibb.co/r2zns1m/image-01.jpg"
+              image={crypto}
               CardTitle="Intermediate Cryptography"
               titleHref="/cryptography"
               btnHref="/cryptography"
@@ -40,7 +41,7 @@ const Card = () => {
               Button="Play game"
             />
             <SingleCard
-              image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
+              image={reverseEng}
               CardTitle="Introductory Reverse Engineering"
               titleHref="/reverseEng"
               btnHref="/reverseEng"
@@ -48,7 +49,7 @@ const Card = () => {
               Button="Play game"
             />
             <SingleCard
-              image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
+              image={binexp}
               CardTitle="Binary Exploitation"
               titleHref="/binaryExp"
               btnHref="/binaryExp"
@@ -76,7 +77,7 @@ const SingleCard = ({
     <>
       {/*  */}
       <div className="mb-10 overflow-hidden rounded-lg bg-white shadow-lg duration-300 hover:shadow-3">
-        <img src={image} alt="" className="w-full" />
+        <img src={image} alt="" className="w-full h-[230px]" />
         <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
           <h3>
             <Link

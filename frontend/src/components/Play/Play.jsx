@@ -52,6 +52,24 @@ export default function Play() {
            category: "binaryExp",
            url:'/binaryExp'
         }
+        ,
+        {
+           id: 7,
+           title: "Binary Exploitation",
+           date: "06",
+           task: "Basic concepts of binary exploitation, including buffer overflows and ROP",
+           category: "binaryExp",
+           url:'/binaryExp'
+        },
+        ,
+        {
+           id: 8,
+           title: "Binary Exploitation",
+           date: "06",
+           task: "Basic concepts of binary exploitation, including buffer overflows and ROP",
+           category: "binaryExp",
+           url:'/binaryExp'
+        }
      ]
 
     //  const navigate = useNavigate();
@@ -114,7 +132,6 @@ export default function Play() {
                   <Link to={exercise.url}>
                      <button
                         className="hoverButton w-36 h-11 border-[1px] border-smrtBlue text-smrtBlue text-sm rounded-md"
-                        onClick={() => handleButtonClick(exercise)}
                      >
                         Start 
                      </button>

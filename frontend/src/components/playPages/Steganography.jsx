@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { correct, uncorrect } from "../../assets/icons";
+import { correct, uncorrect } from "../../assets/icons/index";
+import AuthContext from '../../context/AutoContext';
 
 const ItemsComponent = () => {
+  const { authTokens, user } = useContext(AuthContext);
   const [currentAssignmentId, setCurrentAssignmentId] = useState(null);
   const [answers, setAnswers] = useState({});
   const [inputValues, setInputValues] = useState({});
@@ -12,6 +14,9 @@ const ItemsComponent = () => {
   const [error, setError] = useState(null);
   const [hints, setHints] = useState([]);
   const [hintIndex, setHintIndex] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [timeTaken, setTimeTaken] = useState({});
+  const [showHints, setShowHints] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -36,16 +41,58 @@ const ItemsComponent = () => {
     fetchItems();
   }, []);
 
-  const handleSubmit = (e, id, correctAnswer) => {
+  const handleSubmit = async (e, assignmentId, correctAnswer) => {
     e.preventDefault();
-    const userAnswer = inputValues[id];
-    if (userAnswer === correctAnswer) {
-      setAnswers(prevAnswers => ({ ...prevAnswers, [id]: true }));
-      alert("Ответ правильный");
-    } else {
-      setAnswers(prevAnswers => ({ ...prevAnswers, [id]: false }));
-      alert("Ответ неправильный");
+    const userAnswer = inputValues[assignmentId];
+    const isCorrect = userAnswer === correctAnswer;
+    setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: isCorrect }));
+    alert(isCorrect ? "Ответ правильный" : "Ответ неправильный");
+
+    const currentTime = new Date();
+    const timeDiff = Math.round((currentTime - startTime) / 1000);
+    setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
+
+    if (!authTokens || !authTokens.access) {
+      setError("Нет авторизационного токена");
+      return;
     }
+
+    try {
+      const url = `http://127.0.0.1:8000/api/assignments/user-assignments/${assignmentId}/submit/`;
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authTokens.access}`,
+        },
+        body: JSON.stringify({
+          user_answer: userAnswer,
+          time_taken: timeDiff,
+        }),
+      });
+      const responseText = await response.text();
+      console.log('Response text:', responseText);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${responseText}`);
+      }
+      const data = JSON.parse(responseText);
+      console.log('Response data:', data);
+    } catch (error) {
+      setError(error.message);
+      console.error("Ошибка при отправке данных на сервер:", error);
+    }
+  };
+
+  const handleSubmit2 = async (e, assignmentId, correctAnswer) => {
+    e.preventDefault();
+    const userAnswer = inputValues[assignmentId];
+    const isCorrect = userAnswer === correctAnswer;
+    setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: isCorrect }));
+    alert(isCorrect ? "Ответ правильный" : "Ответ неправильный");
+
+    const currentTime = new Date();
+    const timeDiff = Math.round((currentTime - startTime) / 1000);
+    setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
   };
 
   const handleChange = (e, id) => {
@@ -57,12 +104,18 @@ const ItemsComponent = () => {
     const assignment = assignments.find(a => a.id === id);
     setHints(assignment.hints || []);
     setHintIndex(0);
+    setStartTime(new Date());
+    setShowHints(false);
   };
 
   const handleNextHint = () => {
     if (hintIndex < hints.length - 1) {
       setHintIndex(hintIndex + 1);
     }
+  };
+
+  const handleShowHints = () => {
+    setShowHints(true);
   };
 
   const handleDownload = async (fileUrl) => {
@@ -100,7 +153,7 @@ const ItemsComponent = () => {
       <Navbar />
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl font-['Montserrat'] mt-16">
         <div className="w-1/4">
-          <h2>Assignments</h2>
+          <h2 className='text-xl font-medium mb-6'>Assignments</h2>
           {assignments.map(assignment => (
             <button
               key={assignment.id}
@@ -111,49 +164,76 @@ const ItemsComponent = () => {
             </button>
           ))}
         </div>
-        <div className="w-3/4">
+        <div className="w-3/4 border-black border-opacity-10 border-[1px] rounded-3xl shadow-xl h-auto">
           {currentAssignment ? (
-            <div className="assignment flex flex-col mb-16 w-full">
-              <div>
+            <div className="assignment flex flex-col mb-16 w-full p-8">
+              <div className='flex flex-col gap-3'>
                 <div className="flex flex-row justify-between">
                   <h3 className="text-2xl font-medium">{currentAssignment.title}</h3>
-                  {answers[currentAssignment.id] !== undefined ? (
-                    answers[currentAssignment.id] ? (
-                      <img src={correct} alt="correct" className="w-8 h-8" />
-                    ) : (
-                      <img src={uncorrect} alt="uncorrect" className="h-8 w-8" />
-                    )
-                  ) : null}
+                  {answers[currentAssignment.id] !== undefined && (
+                    <img src={answers[currentAssignment.id] ? correct : uncorrect} alt={answers[currentAssignment.id] ? "correct" : "uncorrect"} className="w-8 h-8" />
+                  )}
                 </div>
                 <p>{currentAssignment.description}</p>
                 <input
                   type="text"
-                  className="border"
+                  className="border rounded-lg p-1 px-2"
                   value={inputValues[currentAssignment.id] || ''}
                   onChange={e => handleChange(e, currentAssignment.id)}
                 />
-                <button
-                  className="px-4 py-2 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
-                  type="submit"
-                  onClick={e => handleSubmit(e, currentAssignment.id, currentAssignment.answer)}
-                >
-                  Submit
-                </button>
-                {currentAssignment.file && (
-                  <button
-                    className="px-4 py-2 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
-                    onClick={() => handleDownload(currentAssignment.file)}
-                  >
-                    Download File
-                  </button>
+                <div className='flex flex-row justify-between w-full'>
+                  <div className='flex flex-row gap-8'> 
+                  {user ? (
+                    <button
+                      className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                      type="submit"
+                      onClick={e => handleSubmit(e, currentAssignment.id, currentAssignment.answer)}
+                    >
+                      Submit
+                    </button>
+                  ) : (
+                    <button
+                      className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                      type="submit"
+                      onClick={e => handleSubmit2(e, currentAssignment.id, currentAssignment.answer)}
+                    >
+                      Submit
+                    </button>
+                  )}
+                  {currentAssignment.file && (
+                    <button
+                      className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                      onClick={() => handleDownload(currentAssignment.file)}
+                    >
+                      Download File
+                    </button>
+                  )}
+                  </div>
+
+                  <div>
+                    {!showHints && (
+                      <button
+                        className="px-4 w-48 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md mt-4 hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6]"
+                        onClick={handleShowHints}
+                      >
+                        Show Hints
+                      </button>
+                    )}
+                  </div>
+                </div>
+                {answers[currentAssignment.id] && timeTaken[currentAssignment.id] !== undefined && (
+                  <div className='mt-4'>
+                    <p>Time taken: {timeTaken[currentAssignment.id]} seconds</p>
+                  </div>
                 )}
               </div>
 
-              <div>
-                {currentAssignment.image && <img src={currentAssignment.image} alt={currentAssignment.title} width={680} />}
+              <div className='mt-8 w-full flex flex-col items-center justify-center'>
+                {currentAssignment.image && <img src={currentAssignment.image} alt={currentAssignment.title} className='w-auto h-auto rounded-2xl' />}
                 {currentAssignment.video && <video src={currentAssignment.video} controls />}
               </div>
-              {hints.length > 0 && (
+
+              {showHints && hints.length > 0 && (
                 <div className="hints mt-4">
                   <h4>Hints:</h4>
                   {hints.slice(0, hintIndex + 1).map((hint, index) => (
@@ -173,7 +253,7 @@ const ItemsComponent = () => {
               )}
             </div>
           ) : (
-            <p>Please select an assignment to view details</p>
+            <p className='flex flex-row justify-center items-center h-[800px]'>Please select an assignment to view details</p>
           )}
         </div>
       </div>

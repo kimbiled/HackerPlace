@@ -13,6 +13,7 @@ import OSINT from './components/playPages/osint.jsx'
 import ReverseEng from './components/playPages/reverseEng.jsx'
 import Steganography from './components/playPages/Steganography.jsx'
 import WebExploitation from './components/playPages/webExploitation.jsx'
+import Profile from "./components/Profile/Profile.jsx";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/registration" element={<Registration />}/>
           <Route path="/play" element={<Play />} />
           <Route path="*" element={<Error />}/>
+          <Route path="/profile" element={<Profile />}/>
 
           <Route path="/binaryExp" element={<BinaryExploitation />}/>
           <Route path="/cryptography" element={<Cryptography />}/>

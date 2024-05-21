@@ -1,11 +1,16 @@
-import {} from '../../assets/icons/index'
 import { useContext, useEffect } from 'react'
-import AOS from 'aos'
+import { animateScroll as scroll} from 'react-scroll';
 import { Link } from 'react-router-dom'
-import 'aos/dist/aos.css'
 import AuthContext from '../../context/AutoContext'
 
 export default function Navbar() {
+
+    const scrollToFeatures = () => {
+		scroll.scrollTo(770);
+	  };
+      const scrollToUs = () => {
+		scroll.scrollTo(1570);
+	  };
     let {user, logoutUser} = useContext(AuthContext)
     return(
         <>
@@ -19,6 +24,7 @@ export default function Navbar() {
                         <div className="flex items-center lg:order-2">
                            {user? 
                            (<>
+                                <Link to="/profile" className="text-gray-800  hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">My profile</Link>
                                 <Link to="/" className="text-gray-800  hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2" onClick={logoutUser}>Log out</Link>
                            </>) : 
                            (<>
@@ -40,13 +46,10 @@ export default function Navbar() {
                                     <Link to="/play" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Play</Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Features</a>
+                                    <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" onClick={()=>scrollToFeatures()}>Features</a>
                                 </li>
                                 <li>
-                                    <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Contact</a>
+                                    <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" onClick={()=>scrollToUs()}>About Us</a>
                                 </li>
                             </ul>
                         </div>

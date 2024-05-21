@@ -1,13 +1,11 @@
-import { bgVideo } from "../../assets/videos"
+
 import { hero } from "../../assets/icons/index"
-import { useEffect } from "react"
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { } from '../../assets/partners/index'
+import { animateScroll as scroll} from 'react-scroll';
+import { Link } from "react-router-dom"
 export default function Hero() {
-    useEffect(()=>{
-        AOS.init({duration:1000})
-    },[])
+    const scrollTo = () => {
+		scroll.scrollTo(1570);
+	  };
     return(
         <>
             <section className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl font-['Montserrat']">
@@ -20,8 +18,8 @@ export default function Hero() {
                             <br  className="hidden md:inline lg:hidden" /> Our interactive labs, captivating challenges, and expert learning materials will equip you with the skills needed for a successful career in cybersecurity.
                         </p>
                         <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                            <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Get try</a>
-                            <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800">More info</a>
+                            <Link rel="noopener noreferrer" to="play" className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Get try</Link>
+                            <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800" onClick={()=>scrollTo()}>More info</a>
                         </div>
                     </div>
                     <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">

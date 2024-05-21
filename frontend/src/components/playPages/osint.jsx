@@ -1,248 +1,23 @@
-
-// import { correct, uncorrect } from "../../assets/icons"
-// import { useState } from "react"
-
-// export default function osint() {
-//   const [correctAns, setCorrectAns] = useState(false);
-//   const [answer, setAnswer] = useState("");
-//   const [showHints, setShowHints] = useState(false);
-//   const [click, setClick] = useState(0);
-//   const [disable, setDisable] = useState(false)
-//   const counter = () => {
-//     if (click === hints.length - 1) {
-//       setDisable(true);
-//     } else {
-//       setClick(prevClick => prevClick + 1);
-//     }
-//   };
-//   const setAble = () => {
-//     setShowHints(true)
-//   }
-
-//   const hints = [
-//     {
-//       id:1,
-//       exerciseNum:1,
-//       desc:"You must have Маяковская"
-//     },
-//     {
-//       id:2,
-//       exerciseNum:1,
-//       desc:"You must have Маяковская and num"
-//     },
-//     {
-//       id:3,
-//       exerciseNum:1,
-//       desc:"You must have Маяковская and num even"
-//     },
-//     {
-//       id:4,
-//       exerciseNum:1,
-//       desc:"You must have Маяковская 30 + 1"
-//     }
-
-//   ]
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(answer)
-//     if (answer == "Маяковская 31") {
-//       setCorrectAns(true)
-//       alert("Ответ правильный")
-//     }
-//     else {
-//       alert("Ответ неправильный")
-//     }
-//   }
-
-//   const getItems = async (email, password) => {
-//     let url = "http://127.0.0.1:8000/api/assignments/modules/2/"
-//     const response = await fetch(url,{
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({email, password})
-//     })
-//     const data = await response.json()
-//     console.log(data)
-// }
-
-//     return(
-//         <>
-//             <Navbar />
-//             {/* <section>
-//                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-//                     {correctAns? (<img src={correct} alt="correct" />) : (<img src={uncorrect} alt="uncorrect" />)}
-                    
-//                     {showHints? (<>
-//                       <span>{hints[click].desc}</span>
-//                       <button  className={`border w-96 ${disable ? 'bg-gray-400' : 'bg-blue-500'}`} onClick={counter}>Next hint</button>
-                    
-//                     </>) : ( <button onClick={setAble}>SHOW HINTS</button>)}
-//                 </div>
-//                 <div className="flex justify-center min-h-screen items-center py-3 px-2">
-//       <div className="bg-white flex flex-col gap-3 sm:flex-row items-center justify-around py-5 drop-shadow-lg rounded-lg max-w-5xl w-full px-5">
-//         <div className="max-w-lg flex justify-center flex-col gap-3">
-//           <h2 className="text-2xl lg:text-4xl  font-bold text-start">
-//             Let&apos; bring your dream to real
-//           </h2>
-//           <p className="text-base md:text-lg text-gray-500">
-//             Are looking for going fast in your business?
-//             <br /> Send your mail address we will contact you soon.&quot;
-//           </p>
-//           <div className="flex flex-col sm:flex-row gap-5 max-w-md">
-//             <input
-//               type="text"
-//               className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#3651BF] focus:border-transparent"
-//               placeholder="Email"
-//               onChange={e => setAnswer(e.target.value)}
-//             />
-//             <button
-//               className="px-4 py-2 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6]"
-//               type="submit"
-//               onClick={handleSubmit}
-//             >
-//               Subscribe
-//             </button>
-//           </div>
-//         </div>
-//         <div className="flex items-center justify-center sm:justify-end max-w-xs w-full">
-//           <img
-//             src="https://www.tailwindtap.com/assets/components/subscription-cta/jar.jpg"
-//             alt="flower image"
-//             className="rounded-md object-cover"
-//           />
-//         </div>
-//       </div>
-//     </div>
-//             </section>
-//              */}
-
-//              http://127.0.0.1:8000/api/assignments/modules/1/assignments/1/
-//             <Footer />
-//         </>
-//     )
-// }
-
-// import Navbar from "../Navbar/Navbar"
-// import Footer from "../Footer/Footer"
-// import { correct, uncorrect } from "../../assets/icons"
-// import React, { useState, useEffect } from 'react';
-// const ItemsComponent = () => {
-//     const [correctAns, setCorrectAns] = useState(false);
-//     const [answer, setAnswer] = useState("");
-//     const [assignments, setAssignments] = useState([]);
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
-    
-//     const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(answer)
-//     if (answer == "Маяковская 31") {
-//       setCorrectAns(true)
-//       alert("Ответ правильный")
-//     }
-//     else {
-//       alert("Ответ неправильный")
-//     }
-//   }
-//     useEffect(() => {
-//       const fetchItems = async () => {
-//         const url = "http://127.0.0.1:8000/api/assignments/modules/4/";
-//         try {
-//           const response = await fetch(url, {
-//             method: "GET",
-//             headers: { "Content-Type": "application/json" }
-//           });
-//           if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//           }
-//           const data = await response.json();
-//           setAssignments(data.assignments || []); // Убедитесь, что данные являются массивом
-//         } catch (error) {
-//           setError(error.message);
-//         } finally {
-//           setLoading(false);
-//         }
-//       };
-  
-//       fetchItems();
-//     }, []);
-  
-//     if (loading) {
-//       return <div>Loading...</div>;
-//     }
-  
-//     if (error) {
-//       return <div>Error: {error}</div>;
-//     }
-  
-//     return (
-//        <>
-//         <Navbar />
-//             <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl font-['Montserrat'] mt-16">
-//                 {assignments.length > 0 ? (
-//                 assignments.map(assignment => (
-//                     <div key={assignment.id} className="assignment flex flex-row mb-16 justify-between w-full">
-//                         <div>
-//                             <div className="flex flex-row justify-between"> 
-//                                 <h3 className="text-2xl font-medium">{assignment.title}</h3>
-//                                 {correctAns? (<img src={correct} alt="correct" className="w-8 h-8"/>) : (<img src={uncorrect} alt="uncorrect" className="h-8 w-8"/>)}
-//                             </div>
-//                             <p>{assignment.description}</p>
-//                             <input type="text" className="border" onChange={e => setAnswer(e.target.value)}></input>
-//                             <button
-//                                className="px-4 py-2 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6]"
-//                                type="submit"
-//                                onClick={handleSubmit}
-//                              >
-//                                Subscribe
-//                              </button>
-//                             <p><strong>Answer:</strong> {assignment.answer}</p>
-//                         </div>
-
-//                         <div>
-//                             {assignment.image && <img src={assignment.image} alt={assignment.title} width={680}/>}
-//                             {assignment.video && <video src={assignment.video} controls />}
-//                         </div>
-//                         {assignment.hints.length > 0 && (
-//                             <div className="hints">
-//                             <h4>Hints:</h4>
-//                             {assignment.hints.map(hint => (
-//                                 <div key={hint.id} className="hint">
-//                                 <p>{hint.text}</p>
-//                                 {hint.image && <img src={hint.image} alt={`Hint ${hint.id}`} />}
-//                                 </div>
-//                             ))}
-//                             </div>
-//                         )}
-//                     </div>
-//                 ))
-//                 ) : (
-//                 <p>No assignments available</p>
-//                 )}
-//             </div>
-//         <Footer />
-//        </>
-//     );
-//   };
-
-// export default ItemsComponent;
-
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { correct, uncorrect } from "../../assets/icons";
+import AuthContext from '../../context/AutoContext';
 
 const ItemsComponent = () => {
+  const { authTokens } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [currentAssignmentId, setCurrentAssignmentId] = useState(null);
   const [answers, setAnswers] = useState({});
   const [inputValues, setInputValues] = useState({});
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hints, setHints] = useState([]);
+  const [hintIndex, setHintIndex] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [timeTaken, setTimeTaken] = useState({});
+  const [showHints, setShowHints] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -256,7 +31,7 @@ const ItemsComponent = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setAssignments(data.assignments || []); // Убедитесь, что данные являются массивом
+        setAssignments(Array.isArray(data.assignments) ? data.assignments : []);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -267,15 +42,69 @@ const ItemsComponent = () => {
     fetchItems();
   }, []);
 
-  const handleSubmit = (e, id, correctAnswer) => {
+  const handleSubmit2 = async (e, assignmentId, correctAnswer) => {
     e.preventDefault();
-    const userAnswer = inputValues[id];
+    const userAnswer = inputValues[assignmentId];
     if (userAnswer === correctAnswer) {
-      setAnswers(prevAnswers => ({ ...prevAnswers, [id]: true }));
+      setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: true }));
       alert("Ответ правильный");
     } else {
-      setAnswers(prevAnswers => ({ ...prevAnswers, [id]: false }));
+      setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: false }));
       alert("Ответ неправильный");
+    }
+
+    const currentTime = new Date();
+    setEndTime(currentTime);
+    const timeDiff = Math.round((currentTime - startTime) / 1000);
+    setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
+  };
+
+
+  const handleSubmit = async (e, assignmentId, correctAnswer) => {
+    e.preventDefault();
+    const userAnswer = inputValues[assignmentId];
+    if (userAnswer === correctAnswer) {
+      setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: true }));
+      alert("Ответ правильный");
+    } else {
+      setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: false }));
+      alert("Ответ неправильный");
+    }
+
+    const currentTime = new Date();
+    setEndTime(currentTime);
+    const timeDiff = Math.round((currentTime - startTime) / 1000);
+    setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
+
+    if (!authTokens || !authTokens.access) {
+      setError("Нет авторизационного токена");
+      return;
+    }
+
+    try {
+      // URL для отправки ответа на задание пользователя
+      const url = `http://127.0.0.1:8000/api/assignments/user-assignments/${assignmentId}/submit/`;
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authTokens.access}`,
+        },
+        body: JSON.stringify({
+          user_answer: userAnswer,
+          time_taken: timeDiff,
+        }),
+      });
+      const responseText = await response.text();
+      console.log('Response text:', responseText); // Выводим текст ответа в консоль
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${responseText}`);
+      }
+      const data = JSON.parse(responseText); // Парсим текст как JSON
+      console.log('Response data:', data);
+    } catch (error) {
+      setError(error.message);
+      console.error("Ошибка при отправке данных на сервер:", error);
     }
   };
 
@@ -283,8 +112,44 @@ const ItemsComponent = () => {
     setInputValues({ ...inputValues, [id]: e.target.value });
   };
 
+  
   const handleAssignmentClick = (id) => {
     setCurrentAssignmentId(id);
+    const assignment = assignments.find(a => a.id === id);
+    setHints(assignment.hints || []);
+    setHintIndex(0);
+    setStartTime(new Date());
+    setShowHints(false);
+  };
+
+  const handleNextHint = () => {
+    if (hintIndex < hints.length - 1) {
+      setHintIndex(hintIndex + 1);
+    }
+  };
+
+  const handleShowHints = () => {
+    setShowHints(true);
+  };
+
+  const handleDownload = async (fileUrl) => {
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) {
+        throw new Error('Ошибка при загрузке файла');
+      }
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = fileUrl.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      alert('Не удалось скачать файл');
+    }
   };
 
   if (loading) {
@@ -302,7 +167,7 @@ const ItemsComponent = () => {
       <Navbar />
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl font-['Montserrat'] mt-16">
         <div className="w-1/4">
-          <h2>Assignments</h2>
+          <h2 className='text-xl font-medium mb-6'>Assignments</h2>
           {assignments.map(assignment => (
             <button
               key={assignment.id}
@@ -313,53 +178,93 @@ const ItemsComponent = () => {
             </button>
           ))}
         </div>
-        <div className="w-3/4">
+        <div className="w-3/4 border-black border-opacity-10 border-[1px] rounded-3xl shadow-xl h-auto">
           {currentAssignment ? (
-            <div className="assignment flex flex-col mb-16 w-full">
-              <div>
+            <div className="assignment flex flex-col mb-16 w-full p-8">
+              <div className='flex flex-col gap-3'>
                 <div className="flex flex-row justify-between">
                   <h3 className="text-2xl font-medium">{currentAssignment.title}</h3>
-                  {answers[currentAssignment.id] ? (
-                    <img src={correct} alt="correct" className="w-8 h-8" />
-                  ) : (
-                    <img src={uncorrect} alt="uncorrect" className="h-8 w-8" />
+                  {answers[currentAssignment.id] !== undefined && (
+                    <img src={answers[currentAssignment.id] ? correct : uncorrect} alt={answers[currentAssignment.id] ? "correct" : "uncorrect"} className="w-8 h-8" />
                   )}
                 </div>
                 <p>{currentAssignment.description}</p>
                 <input
                   type="text"
-                  className="border"
+                  className="border rounded-lg p-1 px-2"
                   value={inputValues[currentAssignment.id] || ''}
                   onChange={e => handleChange(e, currentAssignment.id)}
                 />
-                <button
-                  className="px-4 py-2 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
-                  type="submit"
-                  onClick={e => handleSubmit(e, currentAssignment.id, currentAssignment.answer)}
-                >
-                  Submit
-                </button>
-                <p><strong>Answer:</strong> {currentAssignment.answer}</p>
+                <div className='flex flex-row w-full justify-between'> 
+                <div className='flex flex-row gap-8'>
+                  {user? (<>
+                    <button
+                    className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                    type="submit"
+                    onClick={e => handleSubmit(e, currentAssignment.id, currentAssignment.answer)}
+                  >
+                    Submit
+                  </button>
+                  </>): (<>
+                    <button
+                    className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                    type="submit"
+                    onClick={e => handleSubmit2(e, currentAssignment.id, currentAssignment.answer)}
+                  >
+                    Submit
+                  </button>
+                  </>)}
+                  {currentAssignment.file && (
+                    <button
+                      className="px-4 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6] mt-2"
+                      onClick={() => handleDownload(currentAssignment.file)}
+                    >
+                      Download File
+                    </button>
+                  )}
+                </div>
+                <div>
+                    {!showHints && (
+                      <button
+                        className="px-4 w-48 py-2 h-12 text-base font-semibold text-white bg-[#3651BF] rounded-lg shadow-md mt-4 hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6]"
+                        onClick={handleShowHints}
+                      >
+                        Show Hints
+                      </button>
+                    )}
+                  </div>
+                </div>
+                {answers[currentAssignment.id] && timeTaken[currentAssignment.id] !== undefined && (
+                  <div className='mt-4'>
+                    <p>Time taken: {timeTaken[currentAssignment.id]} seconds</p>
+                  </div>
+                )}
               </div>
-
-              <div>
-                {currentAssignment.image && <img src={currentAssignment.image} alt={currentAssignment.title} width={680} />}
+              <div className='mt-8 w-full flex flex-col items-center justify-center'>
+                {currentAssignment.image && <img src={currentAssignment.image} alt={currentAssignment.title} className='w-auto h-auto rounded-2xl' />}
                 {currentAssignment.video && <video src={currentAssignment.video} controls />}
               </div>
-              {currentAssignment.hints.length > 0 && (
-                <div className="hints">
+              {showHints && hints.length > 0 && (
+                <div className="hints mt-4">
                   <h4>Hints:</h4>
-                  {currentAssignment.hints.map(hint => (
-                    <div key={hint.id} className="hint">
+                  {hints.slice(0, hintIndex + 1).map((hint, index) => (
+                    <div key={index} className="hint mb-2">
                       <p>{hint.text}</p>
-                      {hint.image && <img src={hint.image} alt={`Hint ${hint.id}`} />}
+                      {hint.image && <img src={hint.image} alt={`Hint ${index}`} />}
                     </div>
                   ))}
+                  <button
+                    className={`px-4 py-2 text-base font-semibold text-white rounded-lg shadow-md mt-2 ${hintIndex >= hints.length - 1 ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#3651BF] hover:bg-[#32439B] focus:outline-none focus:ring-2 focus:ring-[#547FDD] focus:ring-offset-2 focus:ring-offset-[#C7D9F6]'}`}
+                    onClick={handleNextHint}
+                    disabled={hintIndex >= hints.length - 1}
+                  >
+                    Next hint
+                  </button>
                 </div>
               )}
             </div>
           ) : (
-            <p>Please select an assignment to view details</p>
+            <p className='flex flex-row justify-center items-center h-[800px]'>Please select an assignment to view details</p>
           )}
         </div>
       </div>

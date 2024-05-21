@@ -15,4 +15,4 @@ class HintAdmin(admin.ModelAdmin):
 
 @admin.register(UserAssignment)
 class UserAssignmentAdmin(admin.ModelAdmin):
-    list_display = ['user', 'assignment', 'completed', 'completed_at']
+    list_display = ['user', 'assignment', 'completed', 'completed_at', 'time_taken']
