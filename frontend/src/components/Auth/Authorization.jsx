@@ -13,9 +13,6 @@ export default function Authorization() {
 		e.preventDefault()
 		loginUser(email, password)		
 	}
-
-
-
 	
     return(
         <>
@@ -62,29 +59,6 @@ export default function Authorization() {
 										required
 										onChange={e => setPassword(e.target.value)}
 									/>
-								</div>
-								<div className="flex items-center justify-between">
-									<div className="flex items-start">
-										<div className="flex items-center h-5">
-											<input
-												id="remember"
-												aria-describedby="remember"
-												type="checkbox"
-												className="w-4 h-4 border border-[#444] rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  "
-											/>
-										</div>
-										<div className="ml-3 text-sm">
-											<label htmlFor="remember" className="text-[#444]">
-												Remember me
-											</label>
-										</div>
-									</div>
-									<a
-										href="#"
-										className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-									>
-										Forget the password?
-									</a>
 								</div>
 								<button className="group relative h-11 w-full overflow-hidden rounded-xl bg-violet-600 text-white" type="submit">
 									Log in

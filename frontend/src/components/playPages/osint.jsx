@@ -54,7 +54,6 @@ const ItemsComponent = () => {
     }
 
     const currentTime = new Date();
-    setEndTime(currentTime);
     const timeDiff = Math.round((currentTime - startTime) / 1000);
     setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
   };
@@ -72,7 +71,6 @@ const ItemsComponent = () => {
     }
 
     const currentTime = new Date();
-    setEndTime(currentTime);
     const timeDiff = Math.round((currentTime - startTime) / 1000);
     setTimeTaken(prevTimeTaken => ({ ...prevTimeTaken, [assignmentId]: timeDiff }));
 

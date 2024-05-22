@@ -20,7 +20,7 @@ const ItemsComponent = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const url = "http://127.0.0.1:8000/api/assignments/modules/1/";
+      const url = "http://127.0.0.1:8000/api/assignments/modules/7/";
       try {
         const response = await fetch(url, {
           method: "GET",

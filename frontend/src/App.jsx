@@ -14,6 +14,8 @@ import ReverseEng from './components/playPages/reverseEng.jsx'
 import Steganography from './components/playPages/Steganography.jsx'
 import WebExploitation from './components/playPages/webExploitation.jsx'
 import Profile from "./components/Profile/Profile.jsx";
+import Injection from './components/playPages/injection.jsx'
+import Clickjacking from "./components/playPages/clickjacking.jsx"
 
 export default function App() {
   return (
@@ -32,7 +34,9 @@ export default function App() {
           <Route path="/osint" element={<OSINT />} />
           <Route path="/reverseEng" element={<ReverseEng />}/>
           <Route path="/steganography" element={<Steganography />}/>
-          <Route path="/webExp" element={<WebExploitation />}/>
+          <Route path="/injection" element={<WebExploitation />}/>
+          <Route path="/webExp" element={<Injection />}/>
+          <Route path="/clickjacking" element={<Clickjacking />}/>
         </Routes>
       </AuthProvider>
      </>

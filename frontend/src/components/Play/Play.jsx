@@ -55,20 +55,20 @@ export default function Play() {
         ,
         {
            id: 7,
-           title: "Binary Exploitation",
-           date: "06",
-           task: "Basic concepts of binary exploitation, including buffer overflows and ROP",
-           category: "binaryExp",
-           url:'/binaryExp'
+           title: "Advanced Web Exploitation (Clickjacking)",
+           date: "07",
+           task: "Deceptive UI trick to make users click hidden elements",
+           category: "webExp2",
+           url:'/clickjacking'
         },
         ,
         {
            id: 8,
-           title: "Binary Exploitation",
-           date: "06",
-           task: "Basic concepts of binary exploitation, including buffer overflows and ROP",
-           category: "binaryExp",
-           url:'/binaryExp'
+           title: "Advanced Web Exploitation (SQL Injection)",
+           date: "08",
+           task: "Malicious code manipulates databases via insecure input fields",
+           category: "webExp3",
+           url:'/injection'
         }
      ]
 

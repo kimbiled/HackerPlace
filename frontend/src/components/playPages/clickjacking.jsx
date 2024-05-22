@@ -17,10 +17,11 @@ const ItemsComponent = () => {
   const [startTime, setStartTime] = useState(null);
   const [timeTaken, setTimeTaken] = useState({});
   const [showHints, setShowHints] = useState(false);
+  const [selectedAns, setSelectedAns] = useState("")
 
   useEffect(() => {
     const fetchItems = async () => {
-      const url = "http://127.0.0.1:8000/api/assignments/modules/1/";
+      const url = "http://127.0.0.1:8000/api/assignments/modules/8/";
       try {
         const response = await fetch(url, {
           method: "GET",
@@ -43,10 +44,10 @@ const ItemsComponent = () => {
 
   const handleSubmit = async (e, assignmentId, correctAnswer) => {
     e.preventDefault();
-    const userAnswer = inputValues[assignmentId];
+    const userAnswer = selectedAns
     const isCorrect = userAnswer === correctAnswer;
     setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: isCorrect }));
-    alert(isCorrect ? "Ответ правильный" : "Ответ неправильный");
+    alert(isCorrect ? "Ответ правильный" : "Ответ неправильный, ваши данные утекли!");
 
     const currentTime = new Date();
     const timeDiff = Math.round((currentTime - startTime) / 1000);
@@ -85,7 +86,7 @@ const ItemsComponent = () => {
 
   const handleSubmit2 = async (e, assignmentId, correctAnswer) => {
     e.preventDefault();
-    const userAnswer = inputValues[assignmentId];
+    const userAnswer = selectedAns;
     const isCorrect = userAnswer === correctAnswer;
     setAnswers(prevAnswers => ({ ...prevAnswers, [assignmentId]: isCorrect }));
     alert(isCorrect ? "Ответ правильный" : "Ответ неправильный");
@@ -146,6 +147,10 @@ const ItemsComponent = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleOptionChange = (event) => {
+    setSelectedAns(event.target.value);
+    console.log(selectedAns)
+  };
   const currentAssignment = assignments.find(assignment => assignment.id === currentAssignmentId);
 
   return (
@@ -175,11 +180,25 @@ const ItemsComponent = () => {
                   )}
                 </div>
                 <p>{currentAssignment.description}</p>
+                <div className='flex flex-row w-full justify-between'> 
+                  <p>Email</p>
+                  <select className='border' value={selectedAns} onChange={handleOptionChange}>
+                    <option value="Russian">Russian</option>
+                    <option value="Korean">Korean</option>
+                    <option value="France">France</option>
+                    <option value="Turkish">Turkish</option>
+                  </select>
+                </div>
                 <input
                   type="text"
                   className="border rounded-lg p-1 px-2"
                   value={inputValues[currentAssignment.id] || ''}
                   onChange={e => handleChange(e, currentAssignment.id)}
+                />
+                <p>Password</p>
+                <input
+                  type="password"
+                  className="border rounded-lg p-1 px-2"
                 />
                 <div className='flex flex-row justify-between w-full'>
                   <div className='flex flex-row gap-8'> 
